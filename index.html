@@ -40,14 +40,12 @@
                 </ul>
 
                 <h3>Variants</h3>
-                <div v-for="variant in variants" :key="variant.variantId"
-                    class="color-box"
-                    :style="{ backgroundColor: variant.variantColor }" 
-                    @mouseover="updateProduct(variant.variantImage)">
+                <div v-for="variant in variants" :key="variant.variantId" class="color-box"
+                    :style="{ backgroundColor: variant.variantColor }" @mouseover="updateProduct(variant.variantImage)">
                 </div>
 
-                <button @click="addToCart">Add to cart</button>
-                <button @click="removeFromCart">Remove</button>
+                <button @click="addToCart" :disabled="cart >= inventory" :class="{ disabledButton: cart >= inventory }">Add to cart</button>
+                <button @click="removeFromCart" :disabled="cart <= 0" :class="{ disabledButton: cart <= 0}">Remove</button>
 
                 <div class="cart">
                     <p>Cart ({{ cart }})</p>
